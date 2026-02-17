@@ -6,15 +6,6 @@ import type {Route} from "./+types/all-users"
 import Header from "components/Header";
 import { cn, formatDate } from "lib/utils";
 
-interface UserData {
-  name: string
-  email: string
-  imageUrl: string 
-  joinedAt: string
-  status: string 
-}
-
-
 export const loader = async () => {
     const { users, total } = await getAllUsers(10, 0);
 
@@ -38,12 +29,12 @@ const AllUsers = ({ loaderData }: Route.ComponentProps) => {
                         headerText="Name"
                         width="200"
                         textAlign="Left"
-                        template={(props: UserData) => (
-                            <div className="flex items-center gap-1.5 px-4">
-        <img src={props.imageUrl} alt="user" className="rounded-full size-8 aspect-square" referrerPolicy="no-referrer" />
-                                <span>{props.name}</span>
-                            </div>
-                        )}
+        //                 template={(props: UserData) => (
+        //                     <div className="flex items-center gap-1.5 px-4">
+        // <img src={props.imageUrl} alt="user" className="rounded-full size-8 aspect-square" referrerPolicy="no-referrer" />
+        //                         <span>{props.name}</span>
+        //                     </div>
+        //                 )}
                     />
                 <ColumnDirective
                     field="email"
@@ -56,21 +47,21 @@ const AllUsers = ({ loaderData }: Route.ComponentProps) => {
                     headerText="Date Joined"
                     width="140"
                     textAlign="Left"
-                    template={({joinedAt}: { joinedAt: string}) => formatDate(joinedAt)}
+                    // template={({joinedAt}: { joinedAt: string}) => formatDate(joinedAt)}
                 />
                     <ColumnDirective
                         field="status"
                         headerText="Type"
                         width="100"
                         textAlign="Left"
-                        template={({ status }: UserData) => (
-                            <article className={cn('status-column', status === 'user' ? 'bg-success-50': 'bg-light-300')}>
-                                <div className={cn('size-1.5 rounded-full', status === 'user' ? 'bg-success-500': 'bg-gray-500')} />
-                                    <h3 className={cn('font-inter text-xs font-medium', status === 'user' ? 'text-success-700' : 'text-gray-500')}>
-                                        {status}
-                                    </h3>
-                            </article>
-                        )}
+                        // template={({ status }: UserData) => (
+                        //     <article className={cn('status-column', status === 'user' ? 'bg-success-50': 'bg-light-300')}>
+                        //         <div className={cn('size-1.5 rounded-full', status === 'user' ? 'bg-success-500': 'bg-gray-500')} />
+                        //             <h3 className={cn('font-inter text-xs font-medium', status === 'user' ? 'text-success-700' : 'text-gray-500')}>
+                        //                 {status}
+                        //             </h3>
+                        //     </article>
+                        // )}
                     />
                 </ColumnsDirective>
             </GridComponent>
